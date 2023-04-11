@@ -1,6 +1,9 @@
 import io.cucumber.java.Before;
 import io.cucumber.java.pt.Dado;
+import io.cucumber.java.pt.Quando;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.concurrent.TimeUnit;
@@ -24,6 +27,14 @@ public class CorreiosScript {
 
         //Acessando o site
         driver.get("https:www.correios.com.br/");
-    } 
+    }
+
+    @Quando("informo o CEP {string} na busca")
+    public void informo_o_cep_na_busca(String cep){
+        //Procurando pelo CEP
+        WebElement cepInput = driver.findElement(By.id("acesso-busca"));
+        cepInput.sendKeys(cep);
+        cepInput.submit();
+    }
 }
 
