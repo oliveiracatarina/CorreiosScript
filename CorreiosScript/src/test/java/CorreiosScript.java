@@ -1,5 +1,6 @@
 import io.cucumber.java.Before;
 import io.cucumber.java.pt.Dado;
+import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -31,10 +32,21 @@ public class CorreiosScript {
 
     @Quando("informo o CEP {string} na busca")
     public void informo_o_cep_na_busca(String cep){
+
         //Procurando pelo CEP
         WebElement cepInput = driver.findElement(By.id("acesso-busca"));
         cepInput.sendKeys(cep);
         cepInput.submit();
     }
+
+    @Entao("vejo a mensagem {string}")
+    public void vejo_a_mensagem(String mensagem){
+
+        //Verificar se a mensagem de erro é exibida
+        WebElement mensagemErro = driver.findElement(By.xpath("//p[contains(text(), " +
+                mensagem + ")]"));
+        assert(mensagemErro.isDisplayed());
+    }
+
 }
 
