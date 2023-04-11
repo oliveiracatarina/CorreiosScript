@@ -1,5 +1,6 @@
 import io.cucumber.java.Before;
 import io.cucumber.java.pt.Dado;
+import io.cucumber.java.pt.E;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
 import org.openqa.selenium.By;
@@ -42,11 +43,29 @@ public class CorreiosScript {
     @Entao("vejo a mensagem {string}")
     public void vejo_a_mensagem(String mensagem){
 
-        //Verificar se a mensagem de erro é exibida
+        //Verificando se a mensagem de erro é exibida
         WebElement mensagemErro = driver.findElement(By.xpath("//p[contains(text(), " +
                 mensagem + ")]"));
         assert(mensagemErro.isDisplayed());
     }
+
+    @Entao("vejoo endereco {string}")
+    public void vejo_endereco (String endereco){
+
+        //verificando se o endereço exibido está certo
+        WebElement enderecoResultado = driver.findElement(By.xpath("//p[contains(text(), " +
+                endereco + ")]"));
+        assert(enderecoResultado.isDisplayed());
+    }
+
+    @E("volto para a página inicial")
+    public void volto_pagina_inicial(){
+
+        //voltando para a pagina inicial
+        driver.navigate().back();
+    }
+
+    
 
 }
 
